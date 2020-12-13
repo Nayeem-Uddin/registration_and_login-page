@@ -27,7 +27,7 @@ const db = require('./config/keys').mongoURI;
 // Connect to MongoDB
 //after trying almost one hour I have made it ...yahhoooo ..
 //Thanks stackoverflow by the way
-mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true});
+mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true},{ useUnifiedTopology: true });
     mongoose.connection.once('open', function(){
       console.log('Conection has been made!');
     }).on('error', function(error){
@@ -69,6 +69,6 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, console.log(`Server running on  ${PORT}`));
